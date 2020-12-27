@@ -14,14 +14,13 @@ execute 'set runtimepath^=' . s:dein_repo_dir
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
 
-  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
   if !has('nvim')
     call dein#add('roxma/nvim-yarp')
     call dein#add('roxma/vim-hug-neovim-rpc')
   endif
 
-  let s:toml = '~/.config/nvim/.dein.toml'
-  let s:lazy_toml = '~/.config/nvim/.dein_lazy.toml'
+  let s:toml = '~/.config/nvim/dein.toml'
+  let s:lazy_toml = '~/.config/nvim/dein_lazy.toml'
   call dein#load_toml(s:toml, {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
@@ -67,5 +66,12 @@ set wrapscan
 set hlsearch
 :set guicursor=
 set clipboard+=unnamedplus
+
+set fileformats=unix,dos,mac
+set fileencodings=utf-8,sjis
+set tags=.tags;~
+".tags作成コマンド
+"ctags -R -f .tags
+autocmd FileType c,cpp nested :TagbarOpen
 
 inoremap <silent> jj <ESC>
